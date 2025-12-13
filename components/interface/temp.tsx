@@ -1,13 +1,7 @@
 'use client'
-import {Area, AreaChart, CartesianGrid, Line, XAxis, YAxis} from "recharts";
+import {Area, AreaChart, CartesianGrid, XAxis, YAxis} from "recharts";
 
-import {
-    Card,
-    CardContent,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+
 import {
     ChartConfig,
     ChartContainer,
@@ -35,18 +29,8 @@ const chartConfig = {
         color: "var(--chart-1)",
     },
 } satisfies ChartConfig
-export default function Home() {
+export default function Temp() {
     return (
-        <div className={"grid grid-cols-12 gap-2"}>
-        <Card className={"col-span-5"}>
-
-            </Card>
-
-            <Card className={"col-span-7"}>
-        <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-    </CardHeader>
-    <CardContent>
     <ChartContainer config={chartConfig} className={"h-[200px] w-full"}>
         <AreaChart
             accessibilityLayer
@@ -76,8 +60,6 @@ export default function Home() {
         />
         </AreaChart>
         </ChartContainer>
-        </CardContent>
-        </Card>
-        </div>
+
 )
 }
