@@ -1,9 +1,9 @@
 'use client'
-import {LayoutDashboard, Terminal, Grid3x3, Folder, FileAxis3d, History, Server, OctagonAlert, Bell} from "lucide-react"
-
+import {LayoutDashboard, Terminal, Grid3x3, Folder, FileAxis3d, History, Server, OctagonAlert, Bell, Settings, Power} from "lucide-react"
+import {Footer} from "@/components/sidebar/footer";
 import {
   Sidebar,
-  SidebarContent, SidebarFooter,
+  SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -53,10 +53,8 @@ const items = [
 ]
 
 export function AppSidebar() {
-  const showalert = () => {alert("hi")}
   return (
       <Sidebar>
-        <SidebarContent>
           <SidebarHeader>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -74,7 +72,8 @@ export function AppSidebar() {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarHeader>
-          <SidebarGroup>
+        <SidebarContent>
+        <SidebarGroup>
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => (
@@ -89,13 +88,10 @@ export function AppSidebar() {
                 ))}
               </SidebarMenu>
             </SidebarGroupContent>
+
           </SidebarGroup>
-          <SidebarFooter>
-              <Button className={"w-full"} variant={"destructive"} onClick={showalert}>
-                <OctagonAlert/> Shutdown
-              </Button>
-          </SidebarFooter>
         </SidebarContent>
+      <Footer/>
       </Sidebar>
   )
 }
