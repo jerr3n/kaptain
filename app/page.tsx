@@ -6,9 +6,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import Temp from "@/components/interface/temp"
-import {TableDemo} from "@/components/interface/temptable";
+import Graph from "@/components/temp/graph"
+import {TableDemo} from "@/components/temp/Table";
 import {Separator} from "@/components/ui/separator";
+
 export default function Home() {
   return (
       <div className={"grid grid-cols-12 gap-2"}>
@@ -23,7 +24,7 @@ export default function Home() {
                   <CardContent>
                       <TableDemo/>
                       <Separator className={"my-5"}/>
-                      <Temp/>
+                      <Graph/>
                   </CardContent>
               </Card>
       </div>

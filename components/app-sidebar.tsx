@@ -1,4 +1,5 @@
-import { LayoutDashboard, Terminal, Grid3x3, Folder, FileAxis3d, History, Server } from "lucide-react"
+'use client'
+import {LayoutDashboard, Terminal, Grid3x3, Folder, FileAxis3d, History, Server, OctagonAlert, Bell} from "lucide-react"
 
 import {
   Sidebar,
@@ -10,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import {Button} from "@/components/ui/button";
 
 // Menu items.
 const items = [
@@ -51,14 +53,26 @@ const items = [
 ]
 
 export function AppSidebar() {
+  const showalert = () => {alert("hi")}
   return (
       <Sidebar>
         <SidebarContent>
           <SidebarHeader>
-            <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate text-xl font-bold">Kaptain</span>
-              <span className="truncate text-sm ">Nonfunc.</span>
-            </div>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                {/*<SidebarMenuButton size="lg" asChild>*/}
+                <a className="flex items-stretch">
+                  <div className="flex flex-col  leading-none p-2">
+                    <span className="font-bold text-lg">Kaptain</span>
+                    <span className="text-sm font-light">v2.4</span>
+                  </div>
+                  <div className="flex items-center justify-center px-3  ml-auto"> {/*claude helped with this styling a lot*/}
+                    <Bell />
+                  </div>
+                </a>
+                {/*</SidebarMenuButton>*/}
+              </SidebarMenuItem>
+            </SidebarMenu>
           </SidebarHeader>
           <SidebarGroup>
             <SidebarGroupContent>
@@ -77,11 +91,9 @@ export function AppSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
           <SidebarFooter>
-            <SidebarMenuItem key="keys">
-              <SidebarMenuButton asChild>
-
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+              <Button className={"w-full"} variant={"destructive"} onClick={showalert}>
+                <OctagonAlert/> Shutdown
+              </Button>
           </SidebarFooter>
         </SidebarContent>
       </Sidebar>

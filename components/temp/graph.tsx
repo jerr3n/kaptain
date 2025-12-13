@@ -29,7 +29,7 @@ const chartConfig = {
         color: "var(--chart-1)",
     },
 } satisfies ChartConfig
-export default function Temp() {
+export default function Graph() {
     return (
     <ChartContainer config={chartConfig} className={"h-[200px] w-full"}>
         <AreaChart
