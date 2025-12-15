@@ -9,24 +9,44 @@ import {
 import Graph from "@/components/temp/graph"
 import {TableDemo} from "@/components/temp/Table";
 import {Separator} from "@/components/ui/separator";
-
+import {Position} from "@/components/tool/position";
+import {NumInput} from "@/components/ui/custom/number"
+import {Slide } from "@/components/tool/sliding";
 export default function Home() {
-  return (
+    return (
       <div className={"grid grid-cols-12 gap-2"}>
-            <Card className={"col-span-5"}>
+            <Card className={"col-span-5 h-100"}>
+                <CardHeader>
+                    <CardTitle>Toolhead</CardTitle>
+                </CardHeader>
+                <CardContent className={"w-full "}>
+                    <div className={"flex gap-2"}>
+                        <Position pos={"x"} abs={"XXX"} homed={false}/>
+                        <Position pos={"y"} abs={"YYY"} homed={false}/>
+                        <Position pos={"z"} abs={"ZZZ"} homed={true}/>
+                    </div>
+                    <div className={"py-4"}>
 
+                    </div>
+                    <div>
+                        <Slide/>
+                    </div>
+                    <div>
+                        <NumInput/>
+                    </div>
+                </CardContent>
             </Card>
 
-              <Card className={"col-span-7"}>
-                  <CardHeader>
-                      <CardTitle>Temperature</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                      <TableDemo/>
-                      <Separator className={"my-5"}/>
-                      <Graph/>
-                  </CardContent>
-              </Card>
+            <Card className={"col-span-7"}>
+              <CardHeader>
+                  <CardTitle>Temperature</CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <TableDemo/>
+                  <Separator className={"my-5"}/>
+                  <Graph/>
+              </CardContent>
+            </Card>
       </div>
-  )
+    )
 }

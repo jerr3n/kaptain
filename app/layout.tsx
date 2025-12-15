@@ -11,6 +11,7 @@ import {
     BreadcrumbList, BreadcrumbPage,
     BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
+import {SiteHeader} from "@/components/etc/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +40,14 @@ export default function RootLayout({
       >
       <SidebarProvider>
           <AppSidebar />
+          <div className={"w-full"}>
+          <SiteHeader/>
+
           <div className={"w-full p-2"}>
+
               {children}
           </div>
-
+          </div>
       </SidebarProvider>
       </body>
     </html>
