@@ -23,7 +23,7 @@ export function NumInput({iV=0}: {iV?: number}) { //i swear to god react has som
                 (r as React.RefObject<HTMLInputElement>).current
             ) {
                 console.log(e.key)
-                if (e.key === 'ArrowUp'&&f) {
+                if (e.key === 'ArrowUp') {
                     console.log("arrow up")
                     u()
                 } else if (e.key === 'ArrowDown') {
