@@ -4,6 +4,7 @@ import "./globals.css";
 import {AppSidebar} from "@/components/sidebar/app-sidebar";
 import {SidebarInset, SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {Separator} from "@/components/ui/separator";
+import {Toaster} from "@/components/ui/sonner"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -42,7 +43,7 @@ export default function RootLayout({
           <AppSidebar />
           <div className={"w-full"}>
           <SiteHeader/>
-
+          <Toaster/>
           <div className={"w-full p-2"}>
 
               {children}
