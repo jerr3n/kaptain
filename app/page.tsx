@@ -31,8 +31,8 @@ export default function Home() {
                     <div>
                         <Slide/>
                     </div>
-                    <div>
-                        <NumInput/>
+                    <div className={"w-1/5"}>
+                        <NumInput name={"testing"}/>
                     </div>
                 </CardContent>
             </Card>
