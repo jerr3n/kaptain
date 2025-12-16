@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
+import { NumInput } from "@/components/ui/custom/numinput";
 export function Slide() {
 	const [val, setVal] = useState([50]);
 	const [inputValue, setInputValue] = useState("");

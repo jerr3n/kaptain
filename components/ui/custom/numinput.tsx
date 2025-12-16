@@ -1,7 +1,12 @@
 "use client";
-
 import * as React from "react";
-import { useRef, useEffect, useCallback } from "react";
+import {
+	useRef,
+	useEffect,
+	useCallback,
+	forwardRef,
+	useImperativeHandle,
+} from "react";
 import {
 	InputGroup,
 	InputGroupAddon,
@@ -10,26 +15,34 @@ import {
 } from "@/components/ui/input-group";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { Label } from "@/components/ui/label";
-export function NumInput({
-	initial = 0,
-	step = 0.1,
-	min = 0,
-	max = 10,
-	name,
-}: {
-	initial?: number;
-	step?: number;
-	min?: number;
-	max?: number;
-	name: string;
-}) {
+//there are 3 indents here and prettier will get rid of them, lets see
+export interface reference {
+	get: () => number;
+}
+export const NumInput = forwardRef<
+	reference,
+	{
+		initial?: number;
+		step?: number;
+		min?: number;
+		max?: number;
+		name?: string;
+	}
+>(({ initial = 0, step = 0.1, min = 0, max = 10, name }, ref) => {
 	const rnd = (a: number, b: number): number => {
 		const decimal = b.toString().split(".")[1]?.length || 0;
 		return parseFloat(a.toFixed(decimal));
 	};
 	const r = useRef<HTMLInputElement>(null);
 	const [v, V] = React.useState(initial);
-	const [, F] = React.useState(false); //yeah the entire purpose of _ is to not be used
+	const [, F] = React.useState(false);
+	useImperativeHandle(
+		ref,
+		() => ({
+			get: () => v,
+		}),
+		[v],
+	);
 	const down = useCallback(() => {
 		V((z) => (z - step >= min ? rnd(z - step, step) : z));
 	}, [step, min, V]);
@@ -56,12 +69,14 @@ export function NumInput({
 			window.removeEventListener("keydown", k);
 		};
 	}, [down, up, v]);
-	//this code does not look minified
-	// dont tell me it does
-	// that hurts my feelings
+	const [val, setVal] = React.useState(String(initial));
+
+	useEffect(() => {
+		setVal(String(v));
+	}, [v]);
 	return (
 		<div>
-			<Label className={"pb-1"}>{name}</Label>
+			{name && <Label className={"pb-1"}>{name}</Label>}
 			<InputGroup className={""}>
 				<InputGroupAddon>
 					<InputGroupButton size={"icon-xs"} onClick={down}>
@@ -71,15 +86,30 @@ export function NumInput({
 				<InputGroupInput
 					className={"text-center"}
 					ref={r}
-					value={v}
+					value={val}
 					onChange={(e) => {
-						const x = e.target.value;
-						if (x === "") {
-							V(min);
+						const targetValue = e.target.value;
+
+						if (
+							targetValue === "." ||
+							targetValue === "-" ||
+							targetValue === "-." ||
+							targetValue === ""
+						) {
+							setVal(targetValue);
 							return;
 						}
-						const y = Number(x);
-						if (!isNaN(y)) V(rnd(y, step));
+						const stepDec = step.toString().split(".")[1]?.length || 0;
+						const inputDec = targetValue.split(".")[1]?.length || 0;
+
+						if (inputDec > stepDec) {
+							return; // Reject input with too many decimals
+						}
+						const trueValue = Number(targetValue);
+						if (!isNaN(trueValue) && trueValue >= min && trueValue <= max) {
+							setVal(targetValue);
+							V(rnd(trueValue, step));
+						}
 					}}
 					onFocus={() => F(true)}
 					onBlur={() => F(false)}
@@ -92,4 +122,5 @@ export function NumInput({
 			</InputGroup>
 		</div>
 	);
-}
+});
+NumInput.displayName = "numerical input";

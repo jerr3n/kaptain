@@ -6,8 +6,11 @@ import { TableDemo } from "@/components/temp/Table";
 import { Separator } from "@/components/ui/separator";
 import { Position } from "@/components/tool/position";
 import { NumInput } from "@/components/ui/custom/numinput";
-import { Slide } from "@/components/tool/sliding";
+import { Slide } from "@/components/ui/custom/slider";
+import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 export default function Home() {
+	const n = useRef<NumInputRef>(null);
 	return (
 		<div className={"grid grid-cols-12 gap-2"}>
 			<Card className={"col-span-5 h-100"}>
@@ -25,7 +28,14 @@ export default function Home() {
 						<Slide />
 					</div>
 					<div className={"w-1/5"}>
-						<NumInput name={"testing"} />
+						<NumInput name={"testing"} ref={n} />
+						<Button
+							onClick={() => {
+								console.log(n.current?.get());
+							}}
+						>
+							ok
+						</Button>
 					</div>
 				</CardContent>
 			</Card>
