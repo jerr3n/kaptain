@@ -5,12 +5,12 @@ import Graph from "@/components/temp/graph";
 import { TableDemo } from "@/components/temp/Table";
 import { Separator } from "@/components/ui/separator";
 import { Position } from "@/components/tool/position";
-import { NumInput } from "@/components/ui/custom/numinput";
+import { NumInput, reference } from "@/components/ui/custom/numinput";
 import { Slide } from "@/components/ui/custom/slider";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 export default function Home() {
-	const n = useRef<NumInputRef>(null);
+	const n = useRef<reference>(null);
 	return (
 		<div className={"grid grid-cols-12 gap-2"}>
 			<Card className={"col-span-5 h-100"}>
@@ -28,10 +28,16 @@ export default function Home() {
 						<Slide />
 					</div>
 					<div className={"w-1/5"}>
-						<NumInput name={"testing"} ref={n} />
+						<NumInput
+							name={"testing"}
+							ref={n}
+							onChange={(num) => {
+								console.log(num);
+							}}
+						/>
 						<Button
 							onClick={() => {
-								console.log(n.current?.get());
+								n.current?.set(2);
 							}}
 						>
 							ok
