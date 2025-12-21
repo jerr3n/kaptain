@@ -2,14 +2,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Graph from "@/components/temp/graph";
-import { TableDemo } from "@/components/temp/Table";
 import { Separator } from "@/components/ui/separator";
 import { Position } from "@/components/tool/position";
 import { NumInput, reference } from "@/components/ui/custom/numinput";
 import { Slide } from "@/components/ui/custom/slider";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
-import MoonrakerTempGraph from "@/components/temp/graph";
 export default function Home() {
 	const n = useRef<reference>(null);
 	return (
@@ -52,9 +50,7 @@ export default function Home() {
 					<CardTitle>Temperature</CardTitle>
 				</CardHeader>
 				<CardContent>
-					<TableDemo />
-					<Separator className={"my-5"} />
-					<MoonrakerTempGraph />
+					<Graph />
 				</CardContent>
 			</Card>
 		</div>
