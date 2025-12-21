@@ -1,57 +1,39 @@
-"use client";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import React, {useState, useEffect, useRef} from 'react';
 
-import {
-	ChartConfig,
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-} from "@/components/ui/chart";
+export default function Step1Connection() {
+	const r = useRef(null);
 
-const chartData = [
-	{ month: "0:00", desktop: 5 },
-	{ month: "0:10", desktop: 15 },
-	{ month: "0:20", desktop: 45 },
-	{ month: "0:30", desktop: 90 },
-	{ month: "0:40", desktop: 120 },
-	{ month: "0:50", desktop: 140 },
-	{ month: "0:60", desktop: 145 },
-	{ month: "0:70", desktop: 145 },
-	{ month: "0:80", desktop: 145 },
-	{ month: "0:90", desktop: 145 },
-];
+	const connect = () => {
+		const w = new WebSocket('ws://vanilla.local:7125/websocket');
+		r.current = w;
+		w.onopen = () => {
+			console.log('open');
 
-const chartConfig = {
-	desktop: {
-		label: "Desktop",
-		color: "var(--chart-1)",
-	},
-} satisfies ChartConfig;
-export default function Graph() {
+			w.send(JSON.stringify({
+				jsonrpc: '2.0',
+				method: 'printer.objects.subscribe',
+
+			}))
+
+			w.onmessage = ( e ) => {
+				console.log(e);
+			}
+			w.onerror = ( e ) => {
+				throw new Error("no")
+			}
+			w.onclose = ( e ) => {
+				throw new Error("goodbye")
+			}
+		}
+	};
+
+
+
 	return (
-		<ChartContainer config={chartConfig} className={"h-[200px] w-full"}>
-			<AreaChart accessibilityLayer data={chartData}>
-				<CartesianGrid vertical={true} />
-				<XAxis
-					dataKey="month"
-					tickLine={true}
-					axisLine={false}
-					tickMargin={8}
-					tickFormatter={(value) => value.slice(0, 3)}
-				/>
-				<YAxis domain={[0, 250]} />
-				<ChartTooltip
-					cursor={false}
-					content={<ChartTooltipContent indicator="dot" hideLabel />}
-				/>
-				<Area
-					dataKey="desktop"
-					type="linear"
-					fill="var(--color-desktop)"
-					fillOpacity={0}
-					stroke="var(--color-desktop)"
-				/>
-			</AreaChart>
-		</ChartContainer>
+		<div>
+		<div onClick={connect}>
+			jarvis open a websocket
+		</div>
+		</div>
 	);
 }

@@ -9,6 +9,7 @@ import { NumInput, reference } from "@/components/ui/custom/numinput";
 import { Slide } from "@/components/ui/custom/slider";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
+import MoonrakerTempGraph from "@/components/temp/graph";
 export default function Home() {
 	const n = useRef<reference>(null);
 	return (
@@ -53,7 +54,7 @@ export default function Home() {
 				<CardContent>
 					<TableDemo />
 					<Separator className={"my-5"} />
-					<Graph />
+					<MoonrakerTempGraph />
 				</CardContent>
 			</Card>
 		</div>

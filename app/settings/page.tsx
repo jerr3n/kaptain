@@ -1,20 +1,57 @@
 "use client";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Terminal } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import {
+	ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+} from "@/components/ui/chart";
 
+const chartData = [
+	{ month: "0:00", desktop: 5 },
+	{ month: "0:10", desktop: 15 },
+	{ month: "0:20", desktop: 45 },
+	{ month: "0:30", desktop: 90 },
+	{ month: "0:40", desktop: 120 },
+	{ month: "0:50", desktop: 140 },
+	{ month: "0:60", desktop: 145 },
+	{ month: "0:70", desktop: 145 },
+	{ month: "0:80", desktop: 145 },
+	{ month: "0:90", desktop: 145 },
+];
+
+const chartConfig = {
+	desktop: {
+		label: "Desktop",
+		color: "var(--chart-1)",
+	},
+} satisfies ChartConfig;
 export default function Home() {
 	return (
-		<div className={"grid grid-cols-3 grid-rows-3 h-full"}>
-			<Alert variant="destructive" className={""}>
-				<Terminal />
-				<AlertTitle>SHUTDOWN</AlertTitle>
-				<AlertDescription
-					className={"font-mono mt-0 h-full w-auto"}
-				></AlertDescription>
-				<div className={"w-full"}></div>
-			</Alert>
-		</div>
+		<ChartContainer config={chartConfig} className={"h-full w-full"}>
+			<AreaChart accessibilityLayer data={chartData}>
+				<CartesianGrid vertical={true} />
+				<XAxis
+					dataKey="month"
+					tickLine={true}
+					axisLine={false}
+					tickMargin={8}
+					tickFormatter={(value) => value.slice(0, 3)}
+				/>
+				<YAxis domain={[0, 250]} />
+				<ChartTooltip
+					cursor={false}
+					content={<ChartTooltipContent indicator="dot" hideLabel />}
+				/>
+				<Area
+					dataKey="desktop"
+					type="linear"
+					fill="var(--color-desktop)"
+					fillOpacity={0}
+					stroke="var(--color-desktop)"
+				/>
+			</AreaChart>
+		</ChartContainer>
 	);
 }
