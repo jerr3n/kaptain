@@ -24,6 +24,8 @@ import {
 	SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import {Badge} from "@/components/ui/badge";
+import {Spinner} from "@/components/ui/spinner";
 
 // Menu items.
 const items = [
@@ -72,9 +74,11 @@ export function AppSidebar() {
 					<SidebarMenuItem>
 						{/*<SidebarMenuButton size="lg" asChild>*/}
 						<a className="flex items-stretch">
-							<div className="flex flex-col  leading-none p-2">
+							<div className="flex-col flex">
+								<div className="leading-none p-2">
 								<span className="font-bold text-lg">Kaptain</span>
 								<span className="text-sm font-light">v2.4</span>
+								</div>
 							</div>
 							<div className="flex items-center justify-center px-3  ml-auto">
 								{" "}
@@ -82,6 +86,10 @@ export function AppSidebar() {
 								<Bell />
 							</div>
 						</a>
+						<Badge variant="outline">
+							<Spinner />
+							Connecting
+						</Badge>
 						{/*</SidebarMenuButton>*/}
 					</SidebarMenuItem>
 				</SidebarMenu>
