@@ -12,7 +12,7 @@ import {
 	Settings,
 	Power,
 } from "lucide-react";
-import { Footer } from "@/components/sidebar/footer";
+import { Footer } from "@/components/ui/custom/sidebar/footer";
 import {
 	Sidebar,
 	SidebarContent,

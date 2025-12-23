@@ -1,9 +1,9 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Graph from "@/components/temp/graph";
+import Graph from "@/components/ui/custom/graph";
 import { Separator } from "@/components/ui/separator";
-import { Position } from "@/components/tool/position";
+import { Position } from "@/components/ui/custom/position";
 import { NumInput, reference } from "@/components/ui/custom/numinput";
 import { Slide } from "@/components/ui/custom/slider";
 import { Button } from "@/components/ui/button";
@@ -17,11 +17,7 @@ export default function Home() {
 					<CardTitle>Toolhead</CardTitle>
 				</CardHeader>
 				<CardContent className={"w-full "}>
-					<div className={"flex gap-2"}>
-						<Position pos={"x"} abs={"XXX"} homed={false} />
-						<Position pos={"y"} abs={"YYY"} homed={false} />
-						<Position pos={"z"} abs={"ZZZ"} homed={true} />
-					</div>
+					<Position/>
 					<div className={"py-4"}></div>
 					<div>
 						<Slide />

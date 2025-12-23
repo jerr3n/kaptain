@@ -5,7 +5,7 @@ import {
 	DropdownMenu,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { PowerDropdown } from "@/components/sidebar/power-dropdown";
+import { PowerDropdown } from "@/components/ui/custom/sidebar/power-dropdown";
 import Link from "next/link";
 
 export function Footer() {
