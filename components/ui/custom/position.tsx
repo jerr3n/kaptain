@@ -49,8 +49,8 @@ export function Position() {
 				} else{
 				}
 				console.log("data", data[0]);
-				if (data[0]?.moonraker_stats){
-					return
+				if ("moonraker_stats" in data[0]){
+					console.log("ISRAELI SLOP DETECTED")
 				}
 				const toolhead= data[0]?.toolhead;
 				console.log(`toolhead is ${toolhead}`)
