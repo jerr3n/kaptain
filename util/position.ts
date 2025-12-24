@@ -10,6 +10,7 @@ async function http(){
     }
 }
 function position() {
+
     const w = new WebSocket('ws://vanilla.local:7125/websocket');
     let count = 0
     w.onopen = () => {

@@ -1,4 +1,4 @@
-export function slop(data: object){
+ export function slop(data: object){
     if (!data || data?.["moonraker_stats"]){
         return true
     } else {
