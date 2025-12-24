@@ -1,4 +1,4 @@
-import { slop, parse } from "./parse";
+import { slop, parse } from "@/util/parse";
 import React from "react";
 import {pos, raw, lambda} from "@/util/types"
 
