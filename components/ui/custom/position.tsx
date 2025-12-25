@@ -20,55 +20,11 @@ import {Button} from "@/components/ui/button";
  * @constructor
  */
 
+import {usePosition} from "@/hooks/position";
 
 export function Position() {
 
-
-	const connect = () => {
-		const w = new WebSocket('ws://vanilla.local:7125/websocket');
-		w.onopen = () => {
-			console.log('open');
-
-			w.send(`{
-			"jsonrpc": "2.0",
-			"method": "printer.objects.subscribe",
-			"params": {
-				"objects": {
-					"toolhead": ["position", "homed_axes"],
-					"gcode_move": ["gcode_position"]
-				}
-			},
-			"id": 1
-		}`)
-
-			w.onmessage = ( e ) => {
-				const data = JSON.parse(e.data)["params"]
-				let extruder
-				if(!data||data?.cpu_temp){
-					throw new Error("moonraker returned data that's undefined"+e.data)
-				} else{
-				}
-				console.log("data", data[0]);
-				if ("moonraker_stats" in data[0]){
-					console.log("ISRAELI SLOP DETECTED")
-				}
-				const toolhead= data[0]?.toolhead;
-				console.log(`toolhead is ${toolhead}`)
-				if (toolhead){
-					console.log(`toolhead is up`)
-				}
-			}
-			// console.log(x.heater_bed)
-			// console.log(data)
-		}
-		w.onerror = ( e ) => {
-			throw new Error("no")
-		}
-		w.onclose = ( e ) => {
-			throw new Error("goodbye")
-		}
-
-	};
+	const x = usePosition()
 
 	return (
 		<div className={"flex gap-2"}>
@@ -83,7 +39,7 @@ export function Position() {
 			{/*		</InputGroupButton>*/}
 			{/*	</InputGroupAddon>*/}
 			{/*</InputGroup>*/}
-			<Button	onClick={connect}/>
+			<Button	onClick={()=>{console.log(x.position)}}/>
 		</div>
 	)
 }
