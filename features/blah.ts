@@ -10,7 +10,11 @@ for (const file of directory) {
     const slice = await import(`${root}/${dirName}/${slice}`);
     reducers[slice.name] = slice.reducer //i think
 }
-/*
+
+
+configureStore({
+    reducer: reducers
+})/*
 file obj structure
 file.name is anything
 file.reducer should always be {fileName}Reducer
