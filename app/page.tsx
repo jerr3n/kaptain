@@ -17,7 +17,7 @@ export default function Home() {
 					<CardTitle>Toolhead</CardTitle>
 				</CardHeader>
 				<CardContent className={"w-full "}>
-					<Position/>
+					{/*<Position/>*/}
 					<div className={"py-4"}></div>
 					<div>
 						<Slide />
