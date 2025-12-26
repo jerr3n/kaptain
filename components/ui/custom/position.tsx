@@ -2,14 +2,7 @@
 
 import * as React from "react";
 import { House } from "lucide-react";
-
-import {
-	InputGroup,
-	InputGroupAddon,
-	InputGroupButton,
-	InputGroupInput,
-} from "@/components/ui/input-group";
-import {useEffect} from "react";
+import {useSelector} from "react-redux"
 import {Button} from "@/components/ui/button";
 
 /**
@@ -20,11 +13,10 @@ import {Button} from "@/components/ui/button";
  * @constructor
  */
 
-import {usePosition} from "@/hooks/position";
 
 export function Position() {
 
-	const x = usePosition()
+	const count = useSelector(selectCount)
 
 	return (
 		<div className={"flex gap-2"}>
