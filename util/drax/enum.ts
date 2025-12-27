@@ -78,6 +78,7 @@ const methods = {
 			query: "printer.objects.query",
 			subscribe: "printer.objects.subscribe",
 		},
+		firmwareRestart: "printer.firmware_restart",
 		endstops: "printer.query_endstops.status",
 		gcode: {
 			run: "printer.gcode.script",
