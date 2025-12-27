@@ -303,7 +303,9 @@ const methods = {
 			register: "connection.register_remote_method",
 		},
 	},
-};
+} as const;
+export default methods;
+
 // type params =
 //     |
 // export default methods;
