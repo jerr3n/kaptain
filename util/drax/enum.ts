@@ -269,10 +269,7 @@ const methods = {
 		sensor: {
 			list: "server.sensors.list",
 			info: "server.sensors.info",
-			get: {
-				single: "server.sensors.measurements",
-				batch: "server.sensors.measurements", //im aware this is the same code, impl with types will be different
-			},
+			measurements: "server.sensors.measurements"
 		},
 		mqtt: {
 			publish: "server.mqtt.publish",
@@ -299,7 +296,7 @@ const methods = {
 	extensions: {
 		list: "server.extensions.list",
 		call: "server.extensions.request",
-		agentic: {
+		agent: {
 			send: "connection.send_event",
 			register: "connection.register_remote_method",
 		},

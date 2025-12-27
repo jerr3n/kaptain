@@ -1,8 +1,5 @@
 import methods from "@/util/drax/enum"
 import {metadata} from "@/app/layout";
-
-
-type deviceOptions = "on"|"off"|"toggle"
 type params = {
     /**
      * Server
@@ -38,6 +35,8 @@ type params = {
     [methods.printer.job.cancel]: undefined;
     [methods.printer.job.pause]: undefined;
     [methods.printer.job.resume]: undefined;
+    [methods.printer.objects.query]: { objects: Record<string, any> }
+    [methods.printer.objects.subscribe]: { objects: Record<string, any> }
     /**
      * System
      * https://moonraker.readthedocs.io/en/latest/external_api/machine/
@@ -185,6 +184,42 @@ type params = {
     // TODO [machine.devices.wled.status] = {}
     [methods.devices.sensor.list]: {extended?: boolean};
     [methods.devices.sensor.info]: {sensor: string, extended?: boolean};
-    [methods.devices.sensor.get.single]: {sensor: string}
-    [methods.devices.sensor.get.batch]: undefined;
+    [methods.devices.sensor.measurements]: {sensor?: string}
+    [methods.devices.mqtt.publish]: {
+        topic: string;
+        payload?: any;
+        qos: 0|1|2;
+        retain?: boolean;
+        timeout?: number;
+    }
+    [methods.devices.mqtt.subscribe]: {topic:string;qos:0|1|2;timeout?:number}
+    /**
+     * integrations
+     * https://moonraker.readthedocs.io/en/latest/external_api/integrations/
+     */
+    [methods.spoolman.status]: undefined;
+    [methods.spoolman.set]: {spool_id?: number};
+    [methods.spoolman.get]: undefined;
+    [methods.spoolman.proxy]: {
+        use_v2_response?: boolean;
+        request_method: string;
+        path: string;
+        query?: string;
+        body?:object;
+    }
+
+    [methods.estimate.status]: undefined;
+    [methods.estimate.estimate]: {filename: string; estimator_config?: string;}
+    [methods.estimate.process]: {filename: string; estimator_config?: string; force?: boolean};
+    [methods.estimate.DUMP]: {dest_config?: string;}
+    [methods.td1.get]: undefined;
+    [methods.td1.reset]: {serial: string};
+    /**
+     * Extensions
+     * https://moonraker.readthedocs.io/en/latest/external_api/extensions/
+     */
+    [methods.extensions.list]: undefined;
+    [methods.extensions.call]: {agent: string; method: string; arguments: any[] |object};
+    [methods.extensions.agent.send] : {event: string; data: any;}
+    [methods.extensions.agent.register]: {method_name: string};
 }
