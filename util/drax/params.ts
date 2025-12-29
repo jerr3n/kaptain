@@ -1,5 +1,5 @@
 import methods from "@/util/drax/enum"
-import {metadata} from "@/app/layout";
+
 type params = {
     /**
      * Server
@@ -19,6 +19,7 @@ type params = {
         access_token?: string;
         api_key?: string;
     }
+    [methods.server.websocketId]: undefined;
     /**
      * Printer
      * https://moonraker.readthedocs.io/en/latest/external_api/printer/
@@ -172,7 +173,7 @@ type params = {
      */
     [methods.devices.power.list]: undefined;
     [methods.devices.power.state.get]: {device: string};
-    [methods.devices.power.state.set]: {device: string, action: deviceOptions}
+    [methods.devices.power.state.set]: {device: string, action: "on"|"off"|"toggle"}
     //oh my god what on gods green earth is that
     [methods.devices.power.batch.get]: {[name: string]: null}
     [methods.devices.power.batch.off]: {[name: string]: null}
@@ -223,3 +224,8 @@ type params = {
     [methods.extensions.agent.send] : {event: string; data: any;}
     [methods.extensions.agent.register]: {method_name: string};
 }
+
+type of<T extends keyof params> = params[T]
+
+
+export type {of, params}

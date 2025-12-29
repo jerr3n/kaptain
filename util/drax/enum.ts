@@ -58,6 +58,7 @@ const methods = {
 		rollover: "server.logs.rollover",
 		restart: "server.restart",
 		id: "server.connection.identify",
+		websocketId: "server.websocket.id",
 	},
 	printer: {
 		/** Printer information */
